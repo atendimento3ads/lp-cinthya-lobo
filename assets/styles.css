@@ -193,7 +193,10 @@ h2{font-weight:300;}
    HERO FULL IMAGE — tema claro, foto da Cinthya à direita
    ========================================================= */
 /* Fundo claro atrás dos cantos arredondados, para casar com a seção seguinte */
-.hero-wrap{background:var(--paper);}
+/* As faixas diagonais são de propósito mais largas que a tela (112vw), para
+   cobrirem a borda mesmo rotacionadas. Recorta só na horizontal: `clip` deixa
+   o eixo vertical em `visible`, então a ponta da faixa continua sangrando. */
+.hero-wrap{background:var(--paper); overflow-x:clip;}
 .hero-full{
   position:relative;
   min-height:clamp(560px, 50vw, 820px);
