@@ -121,20 +121,3 @@ if (contactForm) {
   });
 }
 
-// Filtros da agenda de eventos
-const filters = document.querySelectorAll('.filter');
-if (filters.length) {
-  const cards = document.querySelectorAll('[data-category]');
-  const empty = document.getElementById('emptyState');
-  filters.forEach(btn => btn.addEventListener('click', () => {
-    filters.forEach(b => b.classList.toggle('active', b === btn));
-    const cat = btn.dataset.filter;
-    let shown = 0;
-    cards.forEach(card => {
-      const match = cat === 'todos' || card.dataset.category === cat;
-      card.style.display = match ? '' : 'none';
-      if (match) shown++;
-    });
-    if (empty) empty.style.display = shown ? 'none' : 'block';
-  }));
-}
