@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda de eventos — Cinthya Lobo · Método Wolf Farma</title>
+<meta name="description" content="Imersões, mentorias e formações do Método Wolf Farma com data aberta. Inscrições em ambiente externo.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23141110'/%3E%3Cpath d='M50 8 L61 20 L84 14 L74 34 L84 44 L64 41 L67 60 L50 78 L33 60 L36 41 L16 44 L26 34 L16 14 L39 20 Z' fill='%23A31D1D'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+<header class="site-header over-hero" id="siteHeader">
+  <div class="wrap header-row">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/logo-topo.svg" alt="Cinthya Lobo">
+    </a>
+
+    <div class="nav-group">
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="../index.html#metodo">Método</a>
+        <a href="../index.html#solucoes">Soluções</a>
+        <a href="index.html" class="current">Agenda</a>
+        <a href="../index.html#sobre">Sobre</a>
+      </nav>
+      <a class="nav-cta" href="../index.html#contato">Falar com a equipe</a>
+    </div>
+
+    <button class="burger" id="burgerBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navegação mobile">
+    <div class="wrap inner">
+      <a href="../index.html#metodo">Método Wolf Farma</a>
+      <a href="../index.html#solucoes">Soluções</a>
+      <a href="index.html">Agenda de eventos</a>
+      <a href="../index.html#sobre">Sobre a Cinthya</a>
+      <a href="../index.html#contato">Falar com a equipe →</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ HERO DA AGENDA ============ -->
+  <section class="hero-page">
+    <svg class="watermark" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M50 8 L61 20 L84 14 L74 34 L84 44 L64 41 L67 60 L50 78 L33 60 L36 41 L16 44 L26 34 L16 14 L39 20 Z" fill="currentColor"/>
+    </svg>
+    <div class="wrap inner">
+      <span class="eyebrow on-dark">Agenda Wolf Farma</span>
+      <h1>Formação, mentoria e imersão para quem <span class="hl light">lidera uma farmácia de verdade.</span></h1>
+      <p class="lead">Cada evento abaixo tem data, formato e vagas definidos. A inscrição e o pagamento acontecem em ambiente externo, hoje via Sympla.</p>
+    </div>
+  </section>
+
+  <!-- ============ EVENTO EM DESTAQUE ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="featured-card" data-reveal>
+
+        <div class="featured-banner">
+          <img class="bg" src="../assets/images/product-01.png" alt="Plateia da Imersão Wolf Farma" loading="lazy">
+          <div class="banner-top">
+            <span class="badge">Imersão presencial</span>
+            <span class="index-num">01</span>
+          </div>
+        </div>
+
+        <div class="featured-panel">
+          <span class="eyebrow">Em destaque</span>
+          <h2>Imersão Wolf Farma</h2>
+          <p class="desc">Dois dias presenciais e intensivos com um grupo enxuto de donos e gestores. Cada participante trabalha sobre a própria operação e sai com diagnóstico, prioridades e plano de execução definidos.</p>
+
+          <div class="meta-row">
+            <span class="meta-chip"><strong>17 e 18 out</strong></span>
+            <span class="meta-chip"><strong>São Paulo, SP</strong></span>
+            <span class="meta-chip"><strong>Vagas limitadas</strong></span>
+          </div>
+
+          <div style="display:flex; gap:1.4rem; align-items:center; flex-wrap:wrap;">
+            <!-- Checkout externo: URL definitiva a confirmar (Sympla / Eduzz) -->
+            <a class="btn-ticket" href="https://www.sympla.com.br/" target="_blank" rel="noopener">
+              <span class="notch top"></span><span class="notch bottom"></span>
+              <span class="seg seg-label">Comprar no Sympla</span>
+              <span class="seg seg-icon"></span>
+            </a>
+            <a class="link-arrow" href="imersao-wolf-farma.html">Ver detalhes do evento</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LISTAGEM (CMS) ============ -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head head-split" data-reveal>
+        <div style="max-width:52ch;">
+          <span class="eyebrow">Todos os eventos</span>
+          <h2>O que está aberto agora</h2>
+        </div>
+        <span style="font-size:var(--fs-xs); color:var(--ink-soft);">4 eventos ativos</span>
+      </div>
+
+      <!-- Filtros: no CMS real viram as categorias cadastradas -->
+      <div class="filters" data-reveal>
+        <button class="filter active" data-filter="todos">Todos</button>
+        <button class="filter" data-filter="imersao">Imersões</button>
+        <button class="filter" data-filter="mentoria">Mentorias</button>
+        <button class="filter" data-filter="formacao">Formações</button>
+        <button class="filter" data-filter="treinamento">Treinamentos</button>
+      </div>
+
+      <div class="events-grid" data-reveal>
+
+        <a class="event-card" data-category="imersao" href="imersao-wolf-farma.html">
+          <div class="card-banner tone-red">
+            <img class="bg" src="../assets/images/product-01.png" alt="Plateia da Imersão Wolf Farma" loading="lazy">
+            <div class="banner-top"><span class="badge">Imersão presencial</span><span class="index-num">01</span></div>
+          </div>
+          <div class="card-body">
+            <h3>Imersão Wolf Farma</h3>
+            <p class="desc">Dois dias intensivos para sair com diagnóstico, prioridades e plano de execução da sua farmácia.</p>
+            <span class="card-date"><span class="dot"></span> 17 e 18 de outubro · São Paulo, SP</span>
+            <span class="card-foot"><span class="link-arrow">Ver evento</span></span>
+          </div>
+        </a>
+
+        <a class="event-card" data-category="mentoria" href="imersao-wolf-farma.html">
+          <div class="card-banner tone-ink">
+            <img class="bg" src="../assets/images/product-02.png" alt="Cinthya Lobo com tablet na mentoria" loading="lazy">
+            <div class="banner-top"><span class="badge">Mentoria online</span><span class="index-num">02</span></div>
+          </div>
+          <div class="card-body">
+            <h3>Mentoria Online Wolf Farma</h3>
+            <p class="desc">Acompanhamento em grupo reduzido para organizar gestão e execução, com plano revisado a cada ciclo.</p>
+            <span class="card-date"><span class="dot"></span> Turmas mensais · Online ao vivo</span>
+            <span class="card-foot"><span class="link-arrow">Ver evento</span></span>
+          </div>
+        </a>
+
+        <a class="event-card" data-category="formacao" href="imersao-wolf-farma.html">
+          <div class="card-banner tone-deep">
+            <img class="bg" src="../assets/images/product-03.png" alt="Sala de treinamento do Essencial Líder Farma" loading="lazy">
+            <div class="banner-top"><span class="badge">Formação</span><span class="index-num">03</span></div>
+          </div>
+          <div class="card-body">
+            <h3>Essencial Líder Farma · Turma 08</h3>
+            <p class="desc">Formação prática de liderança para quem conduz equipe de farmácia e precisa de repertório para cobrar e desenvolver.</p>
+            <span class="card-date"><span class="dot"></span> Início em novembro · Online ao vivo</span>
+            <span class="card-foot"><span class="link-arrow">Ver evento</span></span>
+          </div>
+        </a>
+
+        <a class="event-card" data-category="treinamento" href="imersao-wolf-farma.html">
+          <div class="card-banner tone-ink">
+            <img class="bg" src="../assets/images/product-03.png" alt="Sala de treinamento com equipes de farmácia" loading="lazy">
+            <div class="banner-top"><span class="badge">Treinamento in company</span><span class="index-num">04</span></div>
+          </div>
+          <div class="card-body">
+            <h3>Treinamento para Equipes de Farmácia</h3>
+            <p class="desc">Capacitação prática para equipes e líderes, adaptada ao contexto e aos indicadores de cada rede ou grupo.</p>
+            <span class="card-date"><span class="dot"></span> Sob agenda · Presencial ou híbrido</span>
+            <span class="card-foot"><span class="link-arrow">Ver evento</span></span>
+          </div>
+        </a>
+
+      </div>
+
+      <p class="empty-state" id="emptyState" style="display:none;">Nenhum evento aberto nesta categoria no momento. <a class="link-arrow" href="../index.html#contato">Entrar na lista de espera</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <svg class="footer-watermark" viewBox="0 0 1240 205" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <text x="620" y="172" text-anchor="middle">Cinthya Lobo</text>
+    </svg>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <p>Desenvolvemos líderes e fortalecemos a gestão de farmácias por meio de mentorias e treinamentos baseados no Método Wolf Farma, criado a partir da realidade prática do varejo farmacêutico.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <a href="../index.html#cenario">O cenário</a>
+        <a href="../index.html#metodo">Método</a>
+        <a href="../index.html#solucoes">Soluções</a>
+        <a href="../index.html#sobre">Sobre</a>
+      </div>
+      <div class="footer-col">
+        <h4>Eventos</h4>
+        <a href="index.html">Agenda completa</a>
+        <a href="imersao-wolf-farma.html">Imersão Wolf Farma</a>
+        <a href="index.html">Mentoria online</a>
+        <a href="index.html">Essencial Líder Farma</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <a href="../index.html#contato">Falar com a equipe</a>
+        <a href="#" onclick="return false;">Instagram</a>
+        <a href="#" onclick="return false;">WhatsApp</a>
+        <a href="#" onclick="return false;">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Cinthya Lobo · Lobo Soluções. Todos os direitos reservados.</span>
+      <span>Desenvolvido por <a class="dev-credit" href="https://3ads.com.br" target="_blank" rel="noopener">3ADS</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+</body>
+</html>
