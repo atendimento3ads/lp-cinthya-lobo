@@ -52,7 +52,11 @@
   <div class="hero-wrap">
   <section class="hero-full" id="topo">
     <div class="hero-media">
-      <img src="assets/images/hero-cinthya.webp" alt="Cinthya Lobo sorrindo, sentada em uma poltrona" fetchpriority="high">
+      <!-- No mobile a foto vira um bloco no topo, acima do texto -->
+      <picture>
+        <source media="(max-width:920px)" srcset="assets/images/hero-cinthya-mobile.webp" width="500" height="553">
+        <img src="assets/images/hero-cinthya.webp" alt="Cinthya Lobo sorrindo" fetchpriority="high">
+      </picture>
     </div>
 
     <div class="wrap hero-inner">
