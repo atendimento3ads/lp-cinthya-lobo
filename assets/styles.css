@@ -568,18 +568,41 @@ h2{font-weight:300;}
   background:radial-gradient(120% 90% at 50% 0%, #171717 0%, #000 100%);
   color:var(--paper); padding:3.5rem 0 1.8rem; position:relative; overflow:hidden;
 }
-/* Nome gigante em marca d'água — SVG com textLength trava o texto
-   exatamente na largura da seção em qualquer viewport */
+/* Nome gigante em marca d'água com uma segunda camada que é revelada
+   suavemente ao redor do cursor. */
 .footer-watermark{
-  display:block; width:100%; height:auto;
+  --footer-light-x:50%;
+  --footer-light-y:50%;
+  position:relative; width:100%; aspect-ratio:1240 / 205;
   user-select:none; pointer-events:none;
   margin-bottom:clamp(2rem, 4vw, 3.5rem);
+}
+.footer-watermark-layer{
+  position:absolute; inset:0; display:block;
+  width:100%; height:100%;
 }
 .footer-watermark text{
   font-family:var(--sans);
   font-size:222px; font-weight:500; letter-spacing:-.045em;
   fill:rgba(239,234,228,.05);
 }
+.footer-watermark-light{
+  opacity:0;
+  -webkit-mask-image:radial-gradient(
+    circle clamp(120px, 18vw, 260px) at var(--footer-light-x) var(--footer-light-y),
+    #000 0%, rgba(0,0,0,.88) 28%, rgba(0,0,0,.35) 58%, transparent 78%
+  );
+  mask-image:radial-gradient(
+    circle clamp(120px, 18vw, 260px) at var(--footer-light-x) var(--footer-light-y),
+    #000 0%, rgba(0,0,0,.88) 28%, rgba(0,0,0,.35) 58%, transparent 78%
+  );
+  transition:opacity .55s ease;
+}
+.footer-watermark-light text{
+  fill:rgba(239,234,228,.34);
+  filter:drop-shadow(0 0 18px rgba(239,234,228,.16));
+}
+.site-footer.has-pointer-light .footer-watermark-light{opacity:1;}
 .footer-top{position:relative; z-index:1; display:grid; grid-template-columns:1.5fr .7fr .7fr .9fr; gap:3rem; padding-bottom:3.2rem; border-bottom:1px solid rgba(239,234,228,.14);}
 .footer-brand p{color:rgba(239,234,228,.6); font-size:var(--fs-xs); line-height:1.7; max-width:38ch;}
 .footer-col h4{font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin:0 0 1.3rem; font-weight:500;}
@@ -588,6 +611,10 @@ h2{font-weight:300;}
 .footer-bottom{position:relative; z-index:1; display:flex; justify-content:space-between; align-items:center; padding-top:1.8rem; font-size:.75rem; color:rgba(239,234,228,.45); flex-wrap:wrap; gap:.6rem;}
 .dev-credit{color:var(--paper); font-weight:600; text-decoration:none;}
 .dev-credit:hover{color:var(--gold);}
+
+@media (prefers-reduced-motion:reduce), (hover:none), (pointer:coarse){
+  .footer-watermark-light{display:none;}
+}
 
 /* ---------- Página interna de evento ---------- */
 /* Hero de post: só breadcrumb, tag e título — sem arte do evento */

@@ -121,3 +121,38 @@ if (contactForm) {
   });
 }
 
+// Rodapé: a marca d'água se ilumina suavemente ao redor do cursor
+const footer = document.querySelector('.site-footer');
+const footerWatermark = footer?.querySelector('.footer-watermark');
+const canLightFooter = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+  && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (footer && footerWatermark && canLightFooter) {
+  let currentX = footerWatermark.clientWidth / 2;
+  let currentY = footerWatermark.clientHeight / 2;
+  let targetX = currentX;
+  let targetY = currentY;
+  let lightRaf = null;
+
+  const renderFooterLight = () => {
+    currentX += (targetX - currentX) * .16;
+    currentY += (targetY - currentY) * .16;
+    footerWatermark.style.setProperty('--footer-light-x', `${currentX}px`);
+    footerWatermark.style.setProperty('--footer-light-y', `${currentY}px`);
+
+    if (Math.abs(targetX - currentX) > .2 || Math.abs(targetY - currentY) > .2) {
+      lightRaf = requestAnimationFrame(renderFooterLight);
+    } else {
+      lightRaf = null;
+    }
+  };
+
+  footer.addEventListener('pointerenter', () => footer.classList.add('has-pointer-light'));
+  footer.addEventListener('pointerleave', () => footer.classList.remove('has-pointer-light'));
+  footer.addEventListener('pointermove', (event) => {
+    const rect = footerWatermark.getBoundingClientRect();
+    targetX = event.clientX - rect.left;
+    targetY = event.clientY - rect.top;
+    if (lightRaf === null) lightRaf = requestAnimationFrame(renderFooterLight);
+  }, { passive:true });
+}
