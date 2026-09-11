@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Score de Liderança da Farmácia — Cinthya Lobo</title>
+<meta name="description" content="Diagnóstico gratuito: descubra o nível de maturidade da liderança da sua farmácia e as três prioridades para avançar ao próximo nível.">
+<!-- Protótipo: fora dos buscadores até a versão final -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23141110'/%3E%3Cpath d='M50 8 L61 20 L84 14 L74 34 L84 44 L64 41 L67 60 L50 78 L33 60 L36 41 L16 44 L26 34 L16 14 L39 20 Z' fill='%23A31D1D'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/score.css">
+</head>
+<body>
+
+<div class="proto-ribbon" role="note">Protótipo para validação · as respostas ficam só neste navegador</div>
+
+<header class="topbar">
+  <div class="wrap topbar-row">
+    <img class="brand-logo" src="assets/logo.svg" alt="Cinthya Lobo" width="199" height="46">
+    <span class="topbar-tag">Score de Liderança</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= TELA 1 · LANDING ================= -->
+  <section class="tela" id="tela-intro" data-tela="intro">
+
+    <div class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Diagnóstico gratuito para farmácias</span>
+          <h1>Qual é o nível de maturidade da <span class="hl">liderança</span> da sua farmácia?</h1>
+          <p class="lead">Responda 12 perguntas sobre a rotina da sua equipe e receba o seu Score de Liderança, a leitura do seu momento e as três prioridades para chegar ao próximo nível.</p>
+          <ul class="chips" aria-label="Como é o diagnóstico">
+            <li>12 perguntas</li>
+            <li>Cerca de 3 minutos</li>
+            <li>Resultado na hora</li>
+          </ul>
+          <button class="btn btn-primary btn-lg" type="button" data-acao="iniciar">Fazer meu diagnóstico <span aria-hidden="true">→</span></button>
+        </div>
+
+        <!-- Cartão ilustrativo do resultado -->
+        <div class="hero-card" aria-hidden="true">
+          <span class="hc-label">Seu Score de Liderança</span>
+          <div class="hc-score"><strong>48</strong><span>/ 75</span></div>
+          <span class="hc-nivel">Liderança Técnica</span>
+          <div class="escala mini">
+            <span style="--c:#A31D1D; flex:15"></span>
+            <span style="--c:#B8862B; flex:15"></span>
+            <span style="--c:#2F5A7A; flex:12"></span>
+            <span style="--c:#3D6B4A; flex:9"></span>
+            <i class="escala-marker" style="left:46%"></i>
+          </div>
+          <ol class="hc-prios">
+            <li>Estruturar a gestão por metas e resultados</li>
+            <li>Desenvolver delegação e autonomia da equipe</li>
+            <li>Dar consistência às rotinas de liderança</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Como funciona</span>
+          <h2>Um retrato <span class="strong">honesto</span> de como a sua equipe é conduzida hoje</h2>
+        </div>
+        <ol class="passos">
+          <li>
+            <span class="passo-n">01</span>
+            <h3>Responda sobre a sua rotina</h3>
+            <p>Liderança, metas, acompanhamento, delegação, feedback e autonomia da equipe. Sem resposta certa: marque o que acontece de fato.</p>
+          </li>
+          <li>
+            <span class="passo-n">02</span>
+            <h3>Receba o seu Score</h3>
+            <p>Uma nota de 25 a 75, calculada pelo peso de cada dimensão na maturidade da liderança, e o nível em que sua farmácia está.</p>
+          </li>
+          <li>
+            <span class="passo-n">03</span>
+            <h3>Saiba o que priorizar</h3>
+            <p>Uma leitura individualizada das suas respostas e as três prioridades de maior impacto para a sua liderança avançar.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section niveis-band">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow on-dark">Os quatro níveis</span>
+          <h2>Em qual deles a sua liderança está?</h2>
+        </div>
+        <div class="niveis" id="listaNiveis"><!-- preenchido via JS a partir da config --></div>
+      </div>
+    </section>
+
+    <section class="section tight cta-final">
+      <div class="wrap">
+        <h2>Descubra o seu nível em <span class="hl">3 minutos</span>.</h2>
+        <button class="btn btn-primary btn-lg" type="button" data-acao="iniciar">Começar o diagnóstico <span aria-hidden="true">→</span></button>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= TELA 2 · QUESTIONÁRIO ================= -->
+  <section class="tela tela-quiz" id="tela-quiz" data-tela="quiz" hidden>
+    <div class="wrap quiz-wrap">
+      <div class="quiz-top">
+        <button class="link-voltar" type="button" data-acao="voltar">← Voltar</button>
+        <span class="quiz-contador" id="quizContador">Pergunta 1 de 12</span>
+      </div>
+      <div class="progresso" role="progressbar" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0" id="quizProgresso">
+        <span id="quizBarra"></span>
+      </div>
+
+      <div class="quiz-card" id="quizCard">
+        <span class="eyebrow" id="quizDimensao">Liderança</span>
+        <h2 class="quiz-pergunta" id="quizPergunta" tabindex="-1"></h2>
+        <p class="quiz-apoio" id="quizApoio" hidden></p>
+        <div class="opcoes" id="quizOpcoes" role="radiogroup" aria-labelledby="quizPergunta"></div>
+        <p class="quiz-dica">Dica: use as teclas 1, 2 e 3.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TELA 3 · CAPTURA DO LEAD ================= -->
+  <section class="tela tela-lead" id="tela-lead" data-tela="lead" hidden>
+    <div class="wrap lead-grid">
+      <div class="lead-copy">
+        <span class="eyebrow">Diagnóstico concluído</span>
+        <h2>Seu Score de Liderança <span class="hl">está pronto.</span></h2>
+        <p class="lead">Preencha seus dados para ver o resultado completo: seu nível, a leitura das suas respostas e as três prioridades para a sua liderança avançar.</p>
+        <button class="link-voltar" type="button" data-acao="revisar">← Revisar respostas</button>
+      </div>
+
+      <form class="form-lead" id="formLead" novalidate>
+        <div class="campo">
+          <label for="f-nome">Nome</label>
+          <input id="f-nome" name="nome" type="text" autocomplete="name" required>
+          <span class="erro" aria-live="polite"></span>
+        </div>
+        <div class="campo">
+          <label for="f-email">E-mail</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+          <span class="erro" aria-live="polite"></span>
+        </div>
+        <div class="campo">
+          <label for="f-whatsapp">WhatsApp</label>
+          <input id="f-whatsapp" name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(00) 00000-0000" required>
+          <span class="erro" aria-live="polite"></span>
+        </div>
+        <div class="campo">
+          <label for="f-empresa">Nome da farmácia/empresa</label>
+          <input id="f-empresa" name="empresa" type="text" autocomplete="organization" required>
+          <span class="erro" aria-live="polite"></span>
+        </div>
+        <div class="campo">
+          <label for="f-colaboradores">Quantidade de colaboradores</label>
+          <select id="f-colaboradores" name="colaboradores" required>
+            <option value="">Selecione</option>
+          </select>
+          <span class="erro" aria-live="polite"></span>
+        </div>
+        <div class="campo campo-full">
+          <label for="f-desafio">Qual é hoje o seu maior desafio na liderança da equipe?</label>
+          <textarea id="f-desafio" name="desafio" rows="3" maxlength="600" required></textarea>
+          <span class="erro" aria-live="polite"></span>
+        </div>
+        <label class="consentimento campo-full">
+          <input type="checkbox" name="consentimento" required>
+          <span>Concordo em receber meu diagnóstico e contatos da equipe Cinthya Lobo, conforme a política de privacidade.</span>
+        </label>
+        <span class="erro erro-consent campo-full" aria-live="polite"></span>
+        <button class="btn btn-primary btn-lg campo-full" type="submit">Ver meu resultado <span aria-hidden="true">→</span></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= TELA 4 · RESULTADO ================= -->
+  <section class="tela tela-resultado" id="tela-resultado" data-tela="resultado" hidden>
+
+    <!-- Bloco 1 · Nível atual -->
+    <div class="res-hero">
+      <div class="wrap res-hero-grid">
+        <div>
+          <span class="eyebrow on-dark" id="resSaudacao">Seu resultado</span>
+          <p class="res-rotulo">Seu nível atual é</p>
+          <h1 class="res-nivel" id="resNivel">—</h1>
+          <p class="res-desc" id="resNivelDesc"></p>
+        </div>
+        <div class="res-score-box">
+          <span class="hc-label">Score de Liderança</span>
+          <div class="res-score"><strong id="resScore">0</strong><span>/ 75</span></div>
+          <div class="escala" id="resEscala" aria-hidden="true"></div>
+          <div class="escala-legenda" id="resLegenda" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap res-corpo">
+      <!-- Bloco 2 · Leitura individualizada -->
+      <article class="res-bloco">
+        <span class="res-num">02</span>
+        <div>
+          <h2>Leitura das suas respostas</h2>
+          <div class="res-leitura" id="resLeitura"></div>
+        </div>
+      </article>
+
+      <!-- Bloco 3 · Três prioridades -->
+      <article class="res-bloco">
+        <span class="res-num">03</span>
+        <div>
+          <h2>Suas três prioridades agora</h2>
+          <p class="res-sub">Ordenadas pelo impacto na maturidade da sua liderança.</p>
+          <ol class="prioridades" id="resPrioridades"></ol>
+        </div>
+      </article>
+    </div>
+
+    <!-- Bloco 4 · Próximo passo (CTA) -->
+    <div class="res-cta">
+      <div class="wrap res-cta-inner">
+        <div>
+          <span class="eyebrow on-dark">Próximo passo</span>
+          <h2 id="ctaTitulo"></h2>
+          <p id="ctaTexto"></p>
+        </div>
+        <a class="btn btn-light btn-lg" id="ctaBotao" href="#"></a>
+      </div>
+    </div>
+
+    <!-- Painel de validação (só no protótipo) -->
+    <div class="wrap">
+      <details class="painel" id="painel">
+        <summary>Painel de validação do protótipo <small>cálculo, regras aplicadas e dados que seriam enviados</small></summary>
+        <div class="painel-corpo">
+          <h3>Pontuação por questão</h3>
+          <div class="tabela-scroll"><table id="painelTabela"></table></div>
+          <h3>Regras aplicadas pelo motor</h3>
+          <ul id="painelRegras"></ul>
+          <h3>Payload para CRM / IA</h3>
+          <pre id="painelPayload"></pre>
+        </div>
+      </details>
+      <div class="res-acoes">
+        <button class="btn btn-outline" type="button" data-acao="refazer">Refazer diagnóstico</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="wrap rodape-row">
+    <span>© 2026 Cinthya Lobo · Método Wolf Farma</span>
+    <span>Desenvolvido por <a href="https://3ads.com.br" target="_blank" rel="noopener">3ADS</a></span>
+  </div>
+</footer>
+
+<script src="config/diagnostico.js"></script>
+<script src="assets/motor.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -9,6 +9,7 @@ index.html                      # Página principal
 eventos/index.html              # Agenda de eventos
 eventos/imersao-wolf-farma.html # LP da Imersão Wolf Farma
 assets/                         # CSS, JS, SVGs e imagens
+score-lideranca/                # Protótipo do Score de Liderança (autocontido, ver README próprio)
 ```
 
 Site estático puro (HTML/CSS/JS), sem build — hospedado via GitHub Pages a partir da branch `main`.
