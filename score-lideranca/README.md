@@ -1,9 +1,9 @@
-# Score de Liderança da Farmácia · protótipo
+# Score de Liderança da Farmácia
 
 Diagnóstico inteligente da Cinthya Lobo: landing page, 12 perguntas, captura do lead e resultado (nível, leitura individualizada e 3 prioridades).
 
-**Status:** protótipo para validação. Sem IA, sem CRM e sem rastreamento instalado (os eventos já vão para o `dataLayer`).
-**URL:** https://atendimento3ads.github.io/lp-cinthya-lobo/score-lideranca/ (fora dos buscadores, com `noindex`).
+**Status:** preparada para produção. GTM e webhook ficam desativados até seus valores serem definidos em `config/integracoes.js`.
+**URL:** https://diagnostico.wolffarma.com.br/
 
 ## Pasta autocontida
 
@@ -13,6 +13,7 @@ Nada aqui depende do site principal: CSS, logo e scripts são próprios. Para le
 score-lideranca/
 ├── index.html                  # LP + questionário + captura + resultado
 ├── config/
+│   ├── integracoes.js          # GTM e webhook, sem segredos no front-end
 │   └── diagnostico.js          # ★ fonte única: perguntas, pesos, condicionais, níveis,
 │                               #   hierarquia, agrupamentos, orientações, CTA
 ├── assets/
@@ -20,6 +21,11 @@ score-lideranca/
 │   ├── app.js                  # fluxo da interface, validação, dataLayer
 │   ├── score.css               # estilos (tokens do site Cinthya Lobo replicados)
 │   └── logo.svg
+├── .htaccess                   # CSP, HTTPS, cache, compressão e cabeçalhos de segurança
+├── robots.txt                  # rastreamento dos buscadores e endereço do sitemap
+├── sitemap.xml                 # URL canônica indexável
+├── llm.txt                     # contexto conciso para mecanismos de IA
+├── llms.txt                    # variante adotada por crawlers que usam o nome no plural
 └── docs/
     ├── estrutura-diagnostico.md  # o PDF organizado + pontos em aberto
     └── prompt-ia.md              # arquitetura e rascunho do prompt para a fase com IA
@@ -44,9 +50,13 @@ npx serve .
 
 No fim do resultado há um **Painel de validação** com a pontuação por questão, as regras que o motor aplicou e o payload que seria enviado ao CRM/IA.
 
-## Onde ficam os dados no protótipo
+Os arquivos `.min.css` e `.min.js` são as versões carregadas em produção. Sempre regenere os minificados após editar os respectivos arquivos-fonte.
 
-Cada envio é salvo só no navegador (`localStorage`, chave `score-lideranca:leads`). Nada sai da máquina.
+## Onde ficam os dados
+
+Sem um webhook configurado, cada envio é salvo somente no navegador (`localStorage`, chave `score-lideranca:leads`). Com `webhookUrl` definido, o payload é enviado por `POST` JSON; se a chamada falhar, o fallback local é preservado. A origem HTTPS exata do webhook também precisa ser adicionada ao `connect-src` da CSP no `.htaccess`.
+
+O GA4 e o Google Ads devem ser configurados dentro do contêiner informado em `gtmId`. Não coloque tokens, senhas ou segredos nos arquivos públicos.
 
 ## Eventos de rastreamento (`window.dataLayer`)
 
@@ -59,6 +69,8 @@ Cada envio é salvo só no navegador (`localStorage`, chave `score-lideranca:lea
 | `score_lead_enviado` | enviou o formulário | `score`, `nivel`, `colaboradores` |
 | `score_resultado_visto` | viu o resultado | `score`, `nivel` |
 | `score_cta_clique` | clicou no CTA final | |
+| `score_webhook_sucesso` | webhook confirmou o recebimento | |
+| `score_webhook_erro` | URL inválida ou falha de rede | `motivo` |
 
 ## Próximas etapas
 

@@ -10,10 +10,12 @@
 
   var CFG = window.SCORE_DIAGNOSTICO;
   var M = window.ScoreMotor;
+  var INTEGRACOES = window.SCORE_INTEGRACOES || {};
   var CHAVE_LEADS = 'score-lideranca:leads';
 
   var estado = { respostas: {}, atual: 0 };
   var $ = function (sel) { return document.querySelector(sel); };
+  var revealObserver = null;
 
   // ---------- Rastreamento [INTEGRAÇÃO: GTM / Meta Pixel / GA4] ----------
   // Por enquanto só empilha no dataLayer; o GTM lê daqui quando for instalado.
@@ -22,10 +24,66 @@
     window.dataLayer.push(Object.assign({ event: evento }, params || {}));
   }
 
+  function carregarGTM() {
+    var id = String(INTEGRACOES.gtmId || '').trim().toUpperCase();
+    if (!/^GTM-[A-Z0-9]+$/.test(id)) return;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(id);
+    script.referrerPolicy = 'strict-origin-when-cross-origin';
+    document.head.appendChild(script);
+  }
+
+  function carregarFontes() {
+    var link = $('#fontes-google');
+    if (!link) return;
+    var ativar = function () { link.media = 'all'; };
+    if ('requestIdleCallback' in window) window.requestIdleCallback(ativar, { timeout: 2000 });
+    else setTimeout(ativar, 0);
+  }
+
+  // ---------- Rolagem e fade-in ----------
+  function registrarRevelacoes(root) {
+    var seletor = [
+      '.section-head', '.passos > li', '.nivel-card', '.faq-item',
+      '.cta-final h2', '.cta-final .btn', '.lead-copy > *', '.form-lead',
+      '.res-hero-grid > *', '.res-bloco', '.res-cta-inner > *',
+      '.painel', '.res-acoes'
+    ].join(',');
+    var itens = Array.prototype.slice.call((root || document).querySelectorAll(seletor));
+    if (!itens.length) return;
+
+    itens.forEach(function (item, indice) {
+      if (item.classList.contains('reveal')) return;
+      item.classList.add('reveal');
+      item.style.setProperty('--reveal-delay', Math.min(indice % 4, 3) * 70 + 'ms');
+      if (revealObserver) revealObserver.observe(item);
+      else item.classList.add('is-visible');
+    });
+  }
+
+  function iniciarRevelacoes() {
+    var reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduzido && 'IntersectionObserver' in window) {
+      revealObserver = new IntersectionObserver(function (entradas, observer) {
+        entradas.forEach(function (entrada) {
+          if (!entrada.isIntersecting) return;
+          entrada.target.classList.add('is-visible');
+          observer.unobserve(entrada.target);
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    }
+    registrarRevelacoes($('#tela-intro'));
+    document.body.classList.add('reveal-ready');
+  }
+
   // ---------- Navegação entre telas ----------
   function mostrar(nome) {
     document.querySelectorAll('.tela').forEach(function (t) { t.hidden = t.dataset.tela !== nome; });
     window.scrollTo({ top: 0, behavior: 'auto' });
+    requestAnimationFrame(function () { registrarRevelacoes(document.querySelector('[data-tela="' + nome + '"]')); });
   }
 
   // ---------- Landing ----------
@@ -52,8 +110,8 @@
     card.classList.remove('troca'); void card.offsetWidth; card.classList.add('troca');
 
     $('#quizContador').textContent = 'Pergunta ' + (estado.atual + 1) + ' de ' + total;
-    $('#quizBarra').style.width = (estado.atual / total * 100) + '%';
-    $('#quizProgresso').setAttribute('aria-valuenow', estado.atual);
+    $('#quizProgresso').value = estado.atual;
+    $('#quizProgresso').textContent = estado.atual + ' de ' + total;
     $('#quizDimensao').textContent = CFG.dimensoes[q.dimensao].nome;
     $('#quizPergunta').textContent = q.pergunta;
     $('#quizApoio').hidden = !q.apoio;
@@ -82,7 +140,8 @@
         estado.atual++;
         renderPergunta();
       } else {
-        $('#quizBarra').style.width = '100%';
+        $('#quizProgresso').value = CFG.questoes.length;
+        $('#quizProgresso').textContent = CFG.questoes.length + ' de ' + CFG.questoes.length;
         track('score_questionario_concluido');
         mostrar('lead');
         $('#f-nome').focus({ preventScroll: true });
@@ -157,9 +216,7 @@
     var leitura = M.redigirLeitura(CFG, r, lead.desafio);
     var payload = M.montarPayload(CFG, estado.respostas, lead, r);
 
-    // [INTEGRAÇÃO] Aqui entra o envio para o CRM/webhook e a chamada à IA
-    // que redige a leitura. No protótipo, o payload fica só no navegador.
-    salvarLocal(payload);
+    enviarWebhook(payload);
     track('score_lead_enviado', { score: r.score, nivel: r.nivel.id, colaboradores: lead.colaboradores });
 
     renderResultado(r, leitura, lead, payload);
@@ -174,6 +231,39 @@
       lista.push(payload);
       localStorage.setItem(CHAVE_LEADS, JSON.stringify(lista));
     } catch (err) { /* navegador sem storage: segue sem salvar */ }
+  }
+
+  function enviarWebhook(payload) {
+    var url = String(INTEGRACOES.webhookUrl || '').trim();
+    if (!url) {
+      salvarLocal(payload);
+      return;
+    }
+
+    try {
+      if (new URL(url).protocol !== 'https:') throw new Error('O webhook precisa usar HTTPS.');
+    } catch (err) {
+      salvarLocal(payload);
+      track('score_webhook_erro', { motivo: 'url_invalida' });
+      return;
+    }
+
+    fetch(url, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'omit',
+      cache: 'no-store',
+      keepalive: true,
+      referrerPolicy: 'strict-origin-when-cross-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (resposta) {
+      if (!resposta.ok) throw new Error('Webhook respondeu com HTTP ' + resposta.status + '.');
+      track('score_webhook_sucesso');
+    }).catch(function () {
+      salvarLocal(payload);
+      track('score_webhook_erro', { motivo: 'falha_de_rede' });
+    });
   }
 
   // ---------- Resultado ----------
@@ -262,6 +352,7 @@
   // Atalhos para a equipe validar cenários com a Cinthya sem responder tudo.
   function barraTeste() {
     if (!/[?&]teste=1\b/.test(location.search)) return;
+    $('#painel').hidden = false;
     var cenarios = {
       'Aleatório': null,
       'Tudo A': 'AAAAAAAAAAAA',
@@ -334,6 +425,9 @@
 
   renderNiveis();
   preencherFaixas();
+  carregarFontes();
+  carregarGTM();
+  iniciarRevelacoes();
   barraTeste();
   track('score_landing_vista');
 })();

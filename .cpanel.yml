@@ -7,3 +7,8 @@ deployment:
     - /bin/cp score-lideranca/index.html $DEPLOYPATH
     - /bin/cp -R score-lideranca/assets $DEPLOYPATH
     - /bin/cp -R score-lideranca/config $DEPLOYPATH
+    - /bin/cp score-lideranca/.htaccess $DEPLOYPATH
+    - /bin/cp score-lideranca/robots.txt $DEPLOYPATH
+    - /bin/cp score-lideranca/sitemap.xml $DEPLOYPATH
+    - /bin/cp score-lideranca/llm.txt $DEPLOYPATH
+    - /bin/cp score-lideranca/llms.txt $DEPLOYPATH
