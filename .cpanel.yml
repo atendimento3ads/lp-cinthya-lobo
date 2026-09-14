@@ -1,0 +1,9 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home1/cinthy37/diagnostico.wolffarma.com.br/
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp -R assets $DEPLOYPATH
+    - /bin/cp -R eventos $DEPLOYPATH
+    - /bin/cp -R score-lideranca $DEPLOYPATH
