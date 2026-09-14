@@ -8,7 +8,7 @@ Versão organizada do documento *"Estrutura de diagnóstico para ferramenta de I
 ## 1. Objetivo
 
 - Mostrar ao gestor ou líder o **nível de maturidade da liderança**, para que ele perceba a necessidade de avançar ao próximo nível.
-- Entregar **o que** ele deve desenvolver, **sem mostrar como** fazer. O "como" é o trabalho da Cinthya (Método Wolf Farma).
+- Entregar **o que** ele deve desenvolver, **sem mostrar como** fazer. O "como" é o trabalho da Cinthya (Método Wolf Farma Alfa - WFA).
 - **Gerar e qualificar leads.**
 
 ### Dados coletados

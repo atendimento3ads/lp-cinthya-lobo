@@ -212,7 +212,7 @@
     if (fortes.length) {
       paragrafos.push('Sua liderança já tem bases importantes: ' + lista(fortes.map(function (k) { return D[k].forte; })) + '.');
     } else if (ordem.filter(function (k) { return d[k].alt === 'C'; }).length >= 6) {
-      paragrafos.push('Hoje, a condução da equipe ainda acontece sem práticas de gestão estruturadas — o funcionamento da farmácia depende muito de quem está presente no dia.');
+      paragrafos.push('Hoje, a condução da equipe ainda acontece sem práticas de gestão estruturadas. O funcionamento da farmácia depende muito de quem está presente no dia.');
     } else {
       paragrafos.push('Várias práticas de gestão já existem na sua farmácia, mas ainda acontecem de forma pontual e dependem bastante da atuação direta do líder.');
     }
@@ -258,7 +258,7 @@
         var nasPrioridades = r.prioridades.some(function (p) { return p.dimensoes.indexOf(k) !== -1; });
         frase += nasPrioridades
           ? 'Esse desafio aparece nas suas respostas e se conecta diretamente com ' + D[k].nome.toLowerCase() + ', que está entre as suas prioridades.'
-          : 'Ele se relaciona com ' + D[k].nome.toLowerCase() + ', mas suas respostas mostram fundamentos anteriores que sustentam essa melhora — por isso eles vêm primeiro.';
+          : 'Ele se relaciona com ' + D[k].nome.toLowerCase() + ', mas suas respostas mostram fundamentos anteriores que sustentam essa melhora. Por isso, eles vêm primeiro.';
       } else if (k && foco.length) {
         frase += 'Suas respostas indicam que ' + D[k].forte + '; o desafio tende a estar mais ligado a questões de ' + lista(foco) + '.';
       } else if (foco.length) {

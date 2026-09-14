@@ -306,7 +306,7 @@ window.SCORE_DIAGNOSTICO = {
   "cta": {
     "_nota": "PLACEHOLDER — definir destino real (WhatsApp da equipe, página de mentoria, agenda).",
     "titulo": "Você já sabe o que precisa ser desenvolvido.",
-    "texto": "O como é o que a Cinthya trabalha com donos e gestores de farmácia no Método Wolf Farma. Converse com a equipe para entender qual caminho faz sentido para o seu momento.",
+    "texto": "O como é o que a Cinthya trabalha com donos e gestores de farmácia no Método Wolf Farma Alfa - WFA. Converse com a equipe para entender qual caminho faz sentido para o seu momento.",
     "botao": "Quero conversar com a equipe",
     "url": "#"
   }

@@ -41,7 +41,7 @@ E-mail e WhatsApp **não** vão para a IA. Mande só o necessário para a redaç
 
 ```
 Você redige a devolutiva do "Score de Liderança da Farmácia", diagnóstico da
-Cinthya Lobo (Método Wolf Farma) para donos e gestores de farmácia.
+Cinthya Lobo (Método Wolf Farma Alfa - WFA) para donos e gestores de farmácia.
 
 Você recebe: o nível já calculado, as 12 respostas, o maior desafio informado
 pelo gestor e as 3 prioridades já definidas pelo motor de regras.
