@@ -2,7 +2,7 @@
 
 Diagnóstico inteligente da Cinthya Lobo: landing page, 12 perguntas, captura do lead e resultado (nível, leitura individualizada e 3 prioridades).
 
-**Status:** preparada para produção. GTM e webhook ficam desativados até seus valores serem definidos em `config/integracoes.js`.
+**Status:** preparada para produção. O webhook do Google Apps Script está ativo; o GTM permanece desativado até seu ID ser definido em `config/integracoes.js`.
 **URL:** https://diagnostico.wolffarma.com.br/
 
 ## Pasta autocontida
@@ -54,7 +54,7 @@ Os arquivos `.min.css` e `.min.js` são as versões carregadas em produção. Se
 
 ## Onde ficam os dados
 
-Sem um webhook configurado, cada envio é salvo somente no navegador (`localStorage`, chave `score-lideranca:leads`). Com `webhookUrl` definido, o payload é enviado por `POST` JSON; se a chamada falhar, o fallback local é preservado. A origem HTTPS exata do webhook também precisa ser adicionada ao `connect-src` da CSP no `.htaccess`.
+Sem um webhook configurado, cada envio é salvo somente no navegador (`localStorage`, chave `score-lideranca:leads`). O webhook atual usa um aplicativo Web do Google Apps Script e envia o payload JSON por `POST` simples em `text/plain`, evitando o preflight CORS. Se a chamada falhar por erro de rede, o fallback local é preservado. As origens `script.google.com` e `script.googleusercontent.com` estão liberadas no `connect-src` da CSP.
 
 O GA4 e o Google Ads devem ser configurados dentro do contêiner informado em `gtmId`. Não coloque tokens, senhas ou segredos nos arquivos públicos.
 
@@ -69,7 +69,7 @@ O GA4 e o Google Ads devem ser configurados dentro do contêiner informado em `g
 | `score_lead_enviado` | enviou o formulário | `score`, `nivel`, `colaboradores` |
 | `score_resultado_visto` | viu o resultado | `score`, `nivel` |
 | `score_cta_clique` | clicou no CTA final | |
-| `score_webhook_sucesso` | webhook confirmou o recebimento | |
+| `score_webhook_sucesso` | navegador concluiu o envio ao Apps Script | |
 | `score_webhook_erro` | URL inválida ou falha de rede | `motivo` |
 
 ## Próximas etapas

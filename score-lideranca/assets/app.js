@@ -250,15 +250,16 @@
 
     fetch(url, {
       method: 'POST',
-      mode: 'cors',
+      // O Apps Script usa um redirecionamento para script.googleusercontent.com
+      // e não responde ao preflight CORS. O POST simples evita esse preflight.
+      mode: 'no-cors',
       credentials: 'omit',
       cache: 'no-store',
       keepalive: true,
       referrerPolicy: 'strict-origin-when-cross-origin',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
       body: JSON.stringify(payload)
-    }).then(function (resposta) {
-      if (!resposta.ok) throw new Error('Webhook respondeu com HTTP ' + resposta.status + '.');
+    }).then(function () {
       track('score_webhook_sucesso');
     }).catch(function () {
       salvarLocal(payload);
