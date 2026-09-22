@@ -1,13 +1,13 @@
 # LP Cinthya Lobo
 
-Landing page de Cinthya Lobo — liderança e gestão no varejo farmacêutico (Método Wolf Farma). Desenvolvido por 3ADS.
+Landing page de Cinthya Lobo — liderança consistente no varejo farmacêutico (Método WFA — Wolf Farma Alfa). Desenvolvido por 3ADS.
 
 ## Estrutura
 
 ```
 index.html                      # Página principal
 eventos/index.html              # Agenda de eventos
-eventos/imersao-wolf-farma.html # LP da Imersão Wolf Farma
+eventos/imersao-wolf-farma.html # LP legada, atualizada para o Essencial Líder Farma
 assets/                         # CSS, JS, SVGs e imagens
 score-lideranca/                # Protótipo do Score de Liderança (autocontido, ver README próprio)
 ```

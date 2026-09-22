@@ -1,5 +1,5 @@
 /* =========================================================
-   Cinthya Lobo · Método Wolf Farma — Protótipo
+   Cinthya Lobo · Método WFA — Protótipo
    Design system compartilhado (site one page + CMS de eventos)
    Escala tipográfica baseada na referência Orixo:
    H1 80/88 · H2 40/48 · H3 30/36 · corpo 20/30 · ls -0.4px
@@ -327,7 +327,7 @@ h2{font-weight:300;}
 .quote-inner cite{display:block; margin-top:1.5rem; font-style:normal; font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(169,129,47,.75);}
 
 /* ---------- Método (pilares) ---------- */
-.pillars{display:grid; grid-template-columns:repeat(5,1fr); gap:16px;}
+.pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
 .pillar{
   background:#fff; border:1px solid var(--paper-line); border-radius:var(--radius);
   padding:26px 22px;
@@ -443,6 +443,11 @@ h2{font-weight:300;}
 .fit-card.no li:last-child{border-bottom:0;}
 .fit-card.no li::before{content:"✕"; color:var(--gold);}
 .fit-card.no .fit-ico{background:rgba(239,234,228,.1); color:var(--gold);}
+.fit-card.scale{background:var(--ink); color:var(--paper);}
+.fit-card.scale li{color:rgba(239,234,228,.75); border-bottom:1px solid rgba(239,234,228,.12);}
+.fit-card.scale li:last-child{border-bottom:0;}
+.fit-card.scale li::before{content:"✓"; color:var(--gold);}
+.fit-card.scale .fit-ico{background:rgba(239,234,228,.1); color:var(--gold);}
 .fit-note{
   margin-top:auto; padding-top:1.5rem;
   font-size:var(--fs-xs); line-height:1.7; color:rgba(239,234,228,.6);
@@ -530,7 +535,7 @@ h2{font-weight:300;}
 .empty-state{padding:3rem 0; color:var(--ink-soft); font-size:var(--fs-sm);}
 
 /* ---------- Depoimentos ---------- */
-.testimonials{display:grid; grid-template-columns:repeat(3,1fr); gap:1.6rem;}
+.testimonials{display:grid; grid-template-columns:repeat(2,1fr); gap:1.6rem; max-width:900px; margin-inline:auto;}
 .testimonial{border:1px solid var(--paper-line); border-radius:var(--radius); padding:2.2rem; background:var(--paper); display:flex; flex-direction:column; gap:1.3rem;}
 .testimonial .qm{font-family:var(--serif); font-style:italic; font-size:3rem; line-height:.5; color:var(--red-bright);}
 .testimonial p{font-size:var(--fs-sm); line-height:1.7; color:var(--ink-soft); flex:1;}
