@@ -308,6 +308,6 @@ window.SCORE_DIAGNOSTICO = {
     "titulo": "Você já sabe o que precisa ser desenvolvido.",
     "texto": "O como é o que a Cinthya trabalha com donos e gestores de farmácia no Método Wolf Farma Alfa - WFA. Converse com a equipe para entender qual caminho faz sentido para o seu momento.",
     "botao": "Quero conversar com a equipe",
-    "url": "https://wa.me/5562999340198?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20Wolf%20Farma%20"
+    "url": "https://wa.me/5562982758414?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20Wolf%20Farma%20"
   }
 };
